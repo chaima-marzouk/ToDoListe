@@ -1,0 +1,41 @@
+body{
+    margin: 0;
+padding: 0;
+font-family: Arial, Helvetica, sans-serif;
+}
+.headers{
+    display: flex;
+   justify-content: space-around;
+   border: solid 1px blanchedalmond;
+   margin-bottom: 20px;
+}
+.table{
+    display: flex;
+}
+.one{
+    border: solid rgb(70, 70, 112) 1px;
+    width: 40%;
+    text-align: center;
+}
+.tabltow{
+    border: solid 1px;
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+}
+.container {
+    background-color: rgb(156, 95, 95);
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .draggable {
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid rgb(161, 78, 78);
+    cursor: move;
+  }
+  
+  .draggable.dragging {
+    opacity: .5;
+  }
