@@ -1,0 +1,115 @@
+body{
+    margin: 0;
+padding: 0;
+font-family: Arial, Helvetica, sans-serif;
+}
+.headers{
+    display: flex;
+   justify-content: space-around;
+   border: solid 1px blanchedalmond;
+   margin-bottom: 20px;
+}
+.table{
+    display: flex;
+}
+.one{
+    border: solid rgb(70, 70, 112) 1px;
+    width: 40%;
+    text-align: center;
+}
+.tabltow{
+    border: solid 1px;
+    display: flex;
+    width: 50%;
+    justify-content: space-around;
+}
+.container {
+    background-color: rgb(156, 95, 95);
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .draggable {
+    padding: 1rem;
+    background-color: white;
+    border: 1px solid rgb(161, 78, 78);
+    cursor: move;
+  }
+  
+  .draggable.dragging {
+    opacity: .5;
+  }
+  #container{
+    margin: 0 auto;
+    width: 1060px;
+    min-height: 100%;
+    background-color: transparent;
+    border: 0;
+}
+
+#header{
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.task-list{
+    width: 250px;
+    float: left;
+    margin: 0 5px;
+    background-color: #e3e3e3;
+    min-height: 240px;
+    border-radius: 10px;
+    padding-bottom: 15px;
+}
+
+.task-list input, .task-list textarea{
+    width: 240px;
+    margin: 1px 5px;
+}
+
+.task-list input{
+    height: 30px;
+}
+
+.todo-task{
+    border-radius: 5px;
+    background-color: #fff;
+    width: 230px;
+    margin: 5px;
+    padding: 5px;
+}
+
+.task-list input[type="button"]{
+    width: 100px;
+    margin: 5px;
+
+}
+
+.todo-task > .task-header{
+    font-weight: bold;
+}
+
+.todo-task > .task-date{
+    font-size: small;
+    font-style: italic;
+}
+
+.todo-task > .task-description{
+    font-size: smaller;
+}
+
+h3{
+    text-align: center;
+}
+
+#delete-div{
+    display: none;
+    background-color: #fff;
+    border: 3px dotted #000;
+    margin: 10px;
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+}
