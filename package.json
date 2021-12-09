@@ -1,0 +1,23 @@
+{
+  "name": "todoliste",
+  "version": "1.0.0",
+  "description": "Une application pour gérer les taches d'un projet pour des utilisations interne d'une startup \"Intelvia\" qui offre des services de marketing en utilisant JavaScript /HTML/CSS.",
+  "main": "dom.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chaima-marzouk/ToDoListe.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chaima-marzouk/ToDoListe/issues"
+  },
+  "homepage": "https://github.com/chaima-marzouk/ToDoListe#readme"
+}
