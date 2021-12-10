@@ -34,7 +34,7 @@ btnn.addEventListener('click' ,function(){
     }
     
  let id = Counter();  
- let project = new Project(id(),nom,description);
+ let project = new Project(id,nom,description);
  paragraphe.innerText = project.nom;
 
  let myProject = {
