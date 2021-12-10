@@ -1,7 +1,7 @@
 let nom = document.getElementById('project_name');
 let description = document.getElementById('project_description');
 let paragraphe = document.getElementById('project_title');
-let btnn = document.getElementById('add_project_btn')
+let addProjectBtn = document.getElementById('add_project_btn')
 
 
 class Project{
@@ -22,9 +22,7 @@ class Project{
 
 
 
-
-
-btnn.addEventListener('click' ,function(){
+addProjectBtn.addEventListener('click' ,function(){
     
     function Counter() {
         let counter = 0;
