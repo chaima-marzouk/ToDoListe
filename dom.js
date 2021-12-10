@@ -21,7 +21,7 @@ class Project{
 
 
 
-btnn.addEventListener('click' ,function(){
+btnn.addEventListener('click' ,function(e){
     
     function Counter() {
         let counter = 0;
@@ -46,6 +46,8 @@ btnn.addEventListener('click' ,function(){
 
  localStorage.setItem("new Project", JSON.stringify(myProject));
  console.log(project.showProject);
+
+ e.preventDefault();
 })
 
 
