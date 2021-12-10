@@ -14,13 +14,32 @@ class Project{
     }
 
     showProject() {
+        Project.showHtml(this.id, this.name, this.description);
+        return this;
+    }
+
+    storeProject() {
+        const allProjects = JSON.parse(localStorage.getItem("projects")) ?? [];
+        allProjects.push({id:this.id, name:this.name, description:this.description});
+        localStorage.setItem("projects", JSON.stringify(allProjects));
+    }
+
+    static showAllProjects() {
+        if (localStorage.getItem("projects")) {
+            JSON.parse(localStorage.getItem("projects")).forEach((item)=>{
+                Project.showHtml(item.id, item.name, item.description);
+            })
+        }
+    }
+
+    static showHtml(id, name, description) {
         const div = document.createElement("div");
         div.innerHTML = `
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            <div id="project_title">${this.name}</div>
+                            <div id="project_title">${name}</div>
                         </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -54,64 +73,10 @@ class Project{
             </div>
         `;
         parentContainer.appendChild(div);
-        return this;
-    }
-
-    storeProject() {
-        const allProjects = JSON.parse(localStorage.getItem("projects")) ?? [];
-        allProjects.push({id:this.id, name:this.name, description:this.description});
-        localStorage.setItem("projects", JSON.stringify(allProjects));
-    }
-
-    static showAllProject() {
-        if (localStorage.getItem("projects")) {
-            JSON.parse(localStorage.getItem("projects")).forEach((item)=>{
-                const div = document.createElement("div");
-                div.innerHTML = `
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                    <div id="project_title">${item.name}</div>
-                                </button>
-                            </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    <div id="header"> To Do List </div>
-                                    <div class="task-list task-container" id="pending">
-                                        <h3>Pending</h3>
-                                    </div>
-                                    <div class="task-list task-container" id="inProgress">
-                                        <h3>In Progress</h3>
-                                    </div>
-                                    <div class="task-list task-container" id="completed">
-                                        <h3>Completed</h3>
-                                    </div>
-                                    <div class="task-list">
-                                        <h3>Add a task</h3>
-                                        <form id="todo-form">
-                                            <input type="text" placeholder="Title" />
-                                            <textarea placeholder="Description"></textarea>
-                                            <input type="text" id="datepicker" placeholder="Due Date (dd/mm/yyyy)" />
-                                            <input type="button" class="btn btn-primary" value="Add Task" onclick="todo.add();" />
-                                        </form>
-                                        <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
-                                        <div id="delete-div">
-                                            Drag Here to Delete
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                parentContainer.appendChild(div);
-            })
-        }
     }
 }
 
-Project.showAllProject();
+Project.showAllProjects();
 
 addProjectBtn.addEventListener("click", (e) => {
     e.preventDefault();
