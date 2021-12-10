@@ -54,6 +54,13 @@ class Project{
             </div>
         `;
         parentContainer.appendChild(div);
+        return this;
+    }
+
+    storeProject() {
+        const allProjects = JSON.parse(localStorage.getItem("projects")) ?? [];
+        allProjects.push({id:this.id, name:this.name, description:this.description});
+        localStorage.setItem("projects", JSON.stringify(allProjects));
     }
 }
 
@@ -64,7 +71,7 @@ addProjectBtn.addEventListener("click", (e) => {
 
     let id = Math.floor(Math.random() * 1000000);
     const newProject = new Project(id,nameProject.value, description.value);
-    newProject.showProject();
+    newProject.showProject().storeProject();
     nameProject.value = '';
     description.value = '';
 });
