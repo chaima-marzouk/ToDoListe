@@ -1,9 +1,19 @@
-class DOM {
-    constructor() {
+let nom = document.getElementById('project_name');
+let description = document.getElementById('project_description');
+let paragraphe = document.getElementById('project_title');
+let btnn = document.getElementById('add_project_btn')
+
+
+class Project{
+    constructor(id,nom,description){
         
+        this.nom = nom.value;
+        this.description = description.value;
+        this.id = id();
     }
 
 }
+
 
     showProject = () => {
         let newProjct = localStorage.getItem("new Project");
@@ -26,6 +36,7 @@ btnn.addEventListener('click' ,function(){
         return IncreaseCounter;
     }
     
+
     let id = Counter();  
     let project = new Project(id(),nom,description);
     paragraphe.innerText = project.nom;
@@ -39,6 +50,7 @@ btnn.addEventListener('click' ,function(){
 
     localStorage.setItem("new Project", JSON.stringify(myProject));
     console.log(project.showProject);
+
 })
 
 
