@@ -47,6 +47,7 @@ class Project{
                             <div id="header"> To Do List </div>
                             <div class="task-list task-container" id="pending">
                                 <h3>Pending</h3>
+                                
                             </div>
                             <div class="task-list task-container" id="inProgress">
                                 <h3>In Progress</h3>
@@ -57,10 +58,11 @@ class Project{
                             <div class="task-list">
                                 <h3>Add a task</h3>
                                 <form id="todo-form">
-                                    <input type="text" placeholder="Title" />
-                                    <textarea placeholder="Description"></textarea>
-                                    <input type="text" id="datepicker" placeholder="Due Date (dd/mm/yyyy)" />
-                                    <input type="button" class="btn btn-primary" value="Add Task" onclick="todo.add();" />
+                                    <input type="text" placeholder="Title" id="titleTask"/>
+                                    <textarea placeholder="Description" id="descriptionTask"></textarea>
+                                    <input type="date" id="dateTask" placeholder="Due Date (dd/mm/yyyy)" />
+                                    <input type="hidden" id="idProject" value="${id}" placeholder="Due Date (dd/mm/yyyy)" />
+                                    <input type="button" class="btn btn-primary" value="Add Task" id="addTask" />
                                 </form>
                                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
                                 <div id="delete-div">
