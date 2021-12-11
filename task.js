@@ -2,8 +2,9 @@ const addTaskBtn = document.getElementById("addTask");
 const titleTask = document.getElementById("titleTask");
 const descriptionTask = document.getElementById("descriptionTask");
 const dateTask = document.getElementById("dateTask");
-const pending = document.getElementById("pending");
-console.log(pending);
+const idProject = document.getElementById("idProject");
+const ParentContainer = document.getElementById("pending");
+
 
 class Task {
     constructor(title, description, date) {
@@ -12,12 +13,20 @@ class Task {
         this.date = date;
     }
 
-    showTask(title, description, date) {
-        const task = document.createElement("div");
-        dispatchEvent.innerHtml = `
-            <h6>Task name</h6>
-            <p>Task description</p>`;
-        pending.appendChild(task);
+    showTask() {
+        const taskDiv = document.createElement("div");
+        taskDiv.innerHTML = `
+                    <h5>
+                        ${this.title}
+                    </h5>
+                    <p>
+                        ${this.description}
+                    </p>
+                    <p>
+                        ${this.date}
+                    </p>
+        `;
+        ParentContainer.appendChild(taskDiv);
         return this;
     }
 }

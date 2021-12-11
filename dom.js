@@ -5,7 +5,7 @@ const addProjectBtn = document.getElementById('add_project_btn');
 const parentContainer = document.getElementById('Parent_Container');
 
 
-class Project extends Task{
+class Project{
     constructor(id,name,description){
         
         this.name = name;
@@ -60,7 +60,8 @@ class Project extends Task{
                                 <form id="todo-form">
                                     <input type="text" placeholder="Title" id="titleTask"/>
                                     <textarea placeholder="Description" id="descriptionTask"></textarea>
-                                    <input type="text" id="dateTask" placeholder="Due Date (dd/mm/yyyy)" />
+                                    <input type="date" id="dateTask" placeholder="Due Date (dd/mm/yyyy)" />
+                                    <input type="hidden" id="idProject" value="${id}" placeholder="Due Date (dd/mm/yyyy)" />
                                     <input type="button" class="btn btn-primary" value="Add Task" id="addTask" />
                                 </form>
                                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
