@@ -14,86 +14,21 @@
         <h3>To-Do-List </h3>
         <h3>JavaScript V1 </h3>
     </heade>
-
-
-    <div class="Parent_Container">
-    <form action="" class="Project_form">
-    <label for="name" class="lab_project">Project Name :</label><br>
-    <input type="text" id="project_name" class="inp_project" placeholder="Name"><br>
-    <label for="Description" class="lab_project">Project description :</label><br>
-    <input type="text" id="project_description" class="inp_project" placeholder="Project"><br>
-    <button class="project_btn" id="add_project_btn">Add project </button>
-    <p id="result"></p>
-    </form>
     
-    <div class="accordion accordion-flush" id="accordionFlushExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="flush-headingOne">
-          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-            <p id="project_title"></p>
-          </button>
-        </h2>
-        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-          <div class="accordion-body">
-            <div id="header"> To Do List </div>
-
-            <div class="task-list task-container" id="pending">
-                <h3>Pending</h3>
-                <!--<div class="todo-task">
-                    <div class="task-header">Sample Header</div>
-                    <div class="task-date">25/06/1992</div>
-                    <div class="task-description">Lorem Ipsum Dolor Sit Amet</div>
-                </div>-->
-            </div>
-
-            <div class="task-list task-container" id="inProgress">
-                <h3>In Progress</h3>
-            </div>
-
-            <div class="task-list task-container" id="completed">
-                <h3>Completed</h3>
-            </div>
-
-            <div class="task-list">
-                <h3>Add a task</h3>
-                <form id="todo-form">
-                    <input type="text" placeholder="Title" />
-                    <textarea placeholder="Description"></textarea>
-                    <input type="text" id="datepicker" placeholder="Due Date (dd/mm/yyyy)" />
-                    <input type="button" class="btn btn-primary" value="Add Task" onclick="todo.add();" />
-                </form>
-
-                <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
-
-                <div id="delete-div">
-                    Drag Here to Delete
-                </div>
-            </div>
-          </div>
-
-            <div style="clear:both;"></div>
-              <script type="text/javascript" src="./lib/jQuery/jquery.min.js"></script>
-            <script type="text/javascript" src="./lib/Bootstrap/bootstrap.min.js"></script>
-            <script type="text/javascript" src="./lib/jQuery/jquery.ui.min.js"></script>
-            <script type="text/javascript" src="./assets/todo.js"></script>
-            
-
-            <!-- <script type="text/javascript">
-                $( "#datepicker" ).datepicker();
-                $( "#datepicker" ).datepicker("option", "dateFormat", "dd/mm/yy");
-
-                $(".task-container").droppable();
-                $(".todo-task").draggable({ revert: "valid", revertDuration:200 });
-                todo.init();
-            </script> -->
-
-          </div>
-        </div>
-      </div>
+    <div class="Parent_Container" id="Parent_Container">
+      <form action="" class="Project_form">
+        <label for="name" class="lab_project">Project Name :</label><br>
+        <input type="text" id="project_name" class="inp_project" placeholder="Name"><br>
+        <label for="Description" class="lab_project">Project description :</label><br>
+        <input type="text" id="project_description" class="inp_project" placeholder="Project"><br>
+        <button class="project_btn" id="add_project_btn">Add project </button>
+        <p id="result"></p>
+      </form>
+    </div>
     
-
     
 </body>
-<script type="text/javascript" src="./dist/main.js"></script>
-<!-- <script src="script.js"></script> -->
+<script src="script.js"></script>
+<script src="dom.js"></script>
+<script src="task.js"></script>
 </html>

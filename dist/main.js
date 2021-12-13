@@ -1,1 +1,1 @@
-console.group("Hello webpack");
+console.group("webpack");
