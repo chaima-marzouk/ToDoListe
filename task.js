@@ -58,14 +58,14 @@ class Task {
     step(taskDiv){
 
         const  allTasks = JSON.parse(localStorage.getItem("task"));
-        console.log("azaz",allTasks)
+        //console.log("azaz",allTasks)
         const baliseP = taskDiv.getElementsByTagName('p');
         const timeStampId = baliseP[1].innerText;
         const objectID = allTasks.filter(item => item.id === JSON.parse(timeStampId) );
-        console.log("objecttid",objectID)
+        //console.log("objecttid",objectID)
 
         Task.showHtml()
-        console.log(timeStampId)
+        //console.log(timeStampId)
     }
 
     static btnPending(taskDiv){
@@ -81,14 +81,22 @@ class Task {
 
             console.log(timeStampId)*/
             newTask.step(taskDiv);
-            console.log("taatatatat", taskDiv)
+            //console.log("taatatatat", taskDiv)
             ParentContainerInProgress.appendChild(taskDiv);
         }
         btn.innerHTML = "CLICK ME";
         ParentContainer.appendChild(btn);
     }
 
-    
+    static deleteTask(id) {
+        const  allTasks = JSON.parse(localStorage.getItem("task")) ?? [];
+        const filtered = allTasks.filter(Task => Task.id !== id);
+        console.log(filtered);
+        localStorage.setItem('task', JSON.stringify(filtered));
+        location.reload();
+        
+    }
+
     static showHtml(title, description, id) {
         //const newTask = new Task()
         const taskDiv = document.createElement("div");
@@ -115,6 +123,9 @@ class Task {
                     <p id="timestamp">
                         ${id === undefined ? '' : id}
                     </p>
+                    <button class="btn-danger" onclick="Task.deleteTask(${id})"> 
+                    ${id}
+                    </button>
                     
         `;
         //btn.innerHTML = "CLICK ME"; 

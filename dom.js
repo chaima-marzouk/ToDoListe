@@ -36,6 +36,8 @@ class Project{
         const allProjects = JSON.parse(localStorage.getItem("projects")) ?? [];
         const filtered = allProjects.filter(project => project.id !== id);
         localStorage.setItem('projects', JSON.stringify(filtered));
+        // Project.showAllProjects();
+
         location.reload();
     }
 
@@ -69,7 +71,7 @@ class Project{
                                     <input type="text" placeholder="Title" id="titleTask"/>
                                     <textarea placeholder="Description" id="descriptionTask"></textarea>
                                     <input type="date" id="dateTask" placeholder="Due Date (dd/mm/yyyy)" />
-                                    <input type="hidden" id="idProject" value="${id}" placeholder="Due Date (dd/mm/yyyy)" />
+                                    <input type="text" id="idProject" value="${id}" placeholder="Due Date (dd/mm/yyyy)" />
                                     <input type="button" class="btn btn-primary" value="Add Task" id="addTask" />
                                 </form>
                                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
