@@ -129,17 +129,7 @@ addProjectBtn.addEventListener("click", (e) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+<<<<<<< HEAD
 
 
 
@@ -204,6 +194,36 @@ addProjectBtn.addEventListener("click", (e) => {
 
 //  e.preventDefault();
 // })
+=======
+// addProjectBtn.addEventListener('click' ,function(e){
+    
+//     e.preventDefault();
+//     // function Counter() {
+//     //     let counter = 0;
+    
+//     //     function IncreaseCounter() {
+//     //         return counter++;
+//     //     };
+    
+//     //     return IncreaseCounter;
+//     // }
+    
+
+//     // let id = Counter();  
+//     let project = new Project(nom,description);
+//     paragraphe.innerText = project.nom;
+
+//     let myProject = {
+//         "projectName" : project.nom,
+//         "projectDescription" : project.description,
+//         // "id" : id()
+
+//     }
+
+// });
+
+
+>>>>>>> dev
 
 
 
