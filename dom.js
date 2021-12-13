@@ -54,7 +54,7 @@ class Project{
                     <div id="flush-collapse${id}" class="accordion-collapse collapse" aria-labelledby="flush-heading${id}" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <div id="header"> To Do List </div>
-                            <button class="btn-danger" onclick="Project.deleteProject(${id})"> delete </button>
+                            <button class="btn btn-danger" onclick="Project.deleteProject(${id})"> delete </button>
                             <div class="task-list task-container" id="pending">
                                 <h3>Pending</h3>
                                 
@@ -71,7 +71,7 @@ class Project{
                                     <input type="text" placeholder="Title" id="titleTask"/>
                                     <textarea placeholder="Description" id="descriptionTask"></textarea>
                                     <input type="date" id="dateTask" placeholder="Due Date (dd/mm/yyyy)" />
-                                    <input type="text" id="idProject" value="${id}" placeholder="Due Date (dd/mm/yyyy)" />
+                                    <input type="hidden" id="idProject" value="${id}"/>
                                     <input type="button" class="btn btn-primary" value="Add Task" id="addTask" />
                                 </form>
                                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
