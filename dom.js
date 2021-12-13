@@ -4,7 +4,6 @@ const titleProject = document.getElementById('project_title');
 const addProjectBtn = document.getElementById('add_project_btn');
 const parentContainer = document.getElementById('Parent_Container');
 
-
 class Project{
     constructor(id,name,description){
         
@@ -32,6 +31,14 @@ class Project{
         }
     }
 
+
+    static deleteProject(id) {
+        const allProjects = JSON.parse(localStorage.getItem("projects")) ?? [];
+        const filtered = allProjects.filter(project => project.id !== id);
+        localStorage.setItem('projects', JSON.stringify(filtered));
+        location.reload();
+    }
+
     static showHtml(id, name, description) {
         const div = document.createElement("div");
         div.innerHTML = `
@@ -39,12 +46,14 @@ class Project{
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                            <div id="project_title">${name}</div>
+                            <div id="project_title">${name } </div>
+                            
                         </button>
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <div id="header"> To Do List </div>
+                            <button class="btn-danger" onclick="Project.deleteProject(${id})"> delete </button>
                             <div class="task-list task-container" id="pending">
                                 <h3>Pending</h3>
                                 
@@ -76,6 +85,8 @@ class Project{
         `;
         parentContainer.appendChild(div);
     }
+
+    
 }
 
 Project.showAllProjects();
@@ -89,12 +100,6 @@ addProjectBtn.addEventListener("click", (e) => {
     nameProject.value = '';
     description.value = '';
 });
-
-
-
-
-
-
 
 
 
