@@ -4,7 +4,6 @@ const titleProject = document.getElementById('project_title');
 const addProjectBtn = document.getElementById('add_project_btn');
 const parentContainer = document.getElementById('Parent_Container');
 
-
 class Project{
     constructor(id,name,description){
         
@@ -32,19 +31,30 @@ class Project{
         }
     }
 
+
+    static deleteProject(id) {
+        const allProjects = JSON.parse(localStorage.getItem("projects")) ?? [];
+        const filtered = allProjects.filter(project => project.id !== id);
+        localStorage.setItem('projects', JSON.stringify(filtered));
+        // Project.showAllProjects();
+
+        location.reload();
+    }
+
     static showHtml(id, name, description) {
         const div = document.createElement("div");
         div.innerHTML = `
             <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
-                    <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    <h2 class="accordion-header" id="flush-heading${id}">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse${id}" aria-expanded="false" aria-controls="flush-collapse${id}">
                             <div id="project_title">${name}</div>
                         </button>
                     </h2>
-                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                    <div id="flush-collapse${id}" class="accordion-collapse collapse" aria-labelledby="flush-heading${id}" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <div id="header"> To Do List </div>
+                            <button class="btn-danger" onclick="Project.deleteProject(${id})"> delete </button>
                             <div class="task-list task-container" id="pending">
                                 <h3>Pending</h3>
                                 
@@ -61,7 +71,7 @@ class Project{
                                     <input type="text" placeholder="Title" id="titleTask"/>
                                     <textarea placeholder="Description" id="descriptionTask"></textarea>
                                     <input type="date" id="dateTask" placeholder="Due Date (dd/mm/yyyy)" />
-                                    <input type="hidden" id="idProject" value="${id}" placeholder="Due Date (dd/mm/yyyy)" />
+                                    <input type="text" id="idProject" value="${id}" placeholder="Due Date (dd/mm/yyyy)" />
                                     <input type="button" class="btn btn-primary" value="Add Task" id="addTask" />
                                 </form>
                                 <input type="button" class="btn btn-primary" value="Clear Data" onclick="todo.clear();" />
@@ -76,6 +86,8 @@ class Project{
         `;
         parentContainer.appendChild(div);
     }
+
+    
 }
 
 Project.showAllProjects();
