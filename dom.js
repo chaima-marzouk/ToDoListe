@@ -129,7 +129,6 @@ addProjectBtn.addEventListener("click", (e) => {
 
 
 
-<<<<<<< HEAD
 
 
 
@@ -194,7 +193,6 @@ addProjectBtn.addEventListener("click", (e) => {
 
 //  e.preventDefault();
 // })
-=======
 // addProjectBtn.addEventListener('click' ,function(e){
     
 //     e.preventDefault();
@@ -223,7 +221,6 @@ addProjectBtn.addEventListener("click", (e) => {
 // });
 
 
->>>>>>> dev
 
 
 
