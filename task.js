@@ -85,6 +85,17 @@ class Task {
             
     }
 
+
+    static deleteTask(id) {
+        const  allTasks = JSON.parse(localStorage.getItem("task")) ?? [];
+        const filtered = allTasks.filter(Task => Task.id !== id);
+        console.log(filtered);
+        localStorage.setItem('task', JSON.stringify(filtered));
+        location.reload();
+        
+    }
+
+
     
     static showHtml(title, description, id, isButton) {
         const taskDiv = document.createElement("div");
@@ -105,6 +116,8 @@ class Task {
                         ${id === undefined ? '' : new Date(id).toString()}
                     </p>
                     <input type="button" onClick="Task.step('${id}','${btnId}')" class="btn btn-primary" value="${btnValue}" id="btn${btnId}_${id}" />
+                    <input type="button" value="delete"  class="btn btn-danger" onclick="Task.deleteTask(${id})"> 
+                    </input>
                     
         `;
 
