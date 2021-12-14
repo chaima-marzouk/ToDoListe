@@ -46,14 +46,14 @@ class Project{
                         <div class="accordion-body">
                             <div id="header"> To Do List </div>
                             <div class="task-list task-container" id="pending">
-                                <h3>Pending</h3>
+                                <h3>A Faire</h3>
                                 
                             </div>
                             <div class="task-list task-container" id="inProgress">
-                                <h3>In Progress</h3>
+                                <h3>En cours</h3>
                             </div>
                             <div class="task-list task-container" id="completed">
-                                <h3>Completed</h3>
+                                <h3>Fini</h3>
                             </div>
                             <div class="task-list">
                                 <h3>Add a task</h3>

@@ -8,103 +8,92 @@ const ParentContainer = document.getElementById("pending");
 const ParentContainerInProgress = document.getElementById("inProgress");
 
 
-
 class Task {
-    constructor(title, description, date, id) {
+    constructor(title, description, date, id,btn) {
         this.title = title;
         this.description = description;
         this.date = date;
         this.id = id;
+        this.btn = btn;
         
     }
 
-   
-
     showTask() {
-        Task.showHtml(this.title, this.description, this.id);
+        Task.showHtml(this.title, this.description, this.id ,this.btn);
         return this;
     }
 
     storeTask() {
         const  allTasks = JSON.parse(localStorage.getItem("task")) ?? [];
         let newTask = {
-            id:this.id, title:this.title, description:this.description, date:this.date
+            id:this.id, title:this.title, description:this.description, date:this.date, disabled:this.btn
         }
 
         allTasks.push(newTask);
         localStorage.setItem("task", JSON.stringify(allTasks));
         console.log("nnnnnnpusuhn", allTasks)
-        
-        /*newTaskArray = [...newTaskArray, newTask];
-        const newd = JSON.stringify(newTaskArray);
-        const newP = JSON.parse(newd);
-        console.log("newTask objet",JSON.stringify(newTask));
-        console.log("newTask ARRAY",JSON.stringify(newTaskArray));
-        console.log("newTask ARRAY parse", newP);*/
-        /*const allTasks = JSON.parse(localStorage.getItem("task")) ?? [];
-        allTasks.push({id:this.id, title:this.title, description:this.description, date:this.date});
-        localStorage.setItem("task", JSON.stringify(allTasks));*/
     }
 
     static showAllTask() {
         if (localStorage.getItem("task")) {
-            JSON.parse(localStorage.getItem("task")).map((item)=>{
+            JSON.parse(localStorage.getItem("task")).forEach((item)=>{
                 Task.showHtml(item.title, item.description, item.id);
             })
         }
     }
 
 
-    step(taskDiv){
+    static step(timeStampId, btnId){
+        console.log("event", timeStampId)
 
         const  allTasks = JSON.parse(localStorage.getItem("task"));
-        console.log("azaz",allTasks)
-        const baliseP = taskDiv.getElementsByTagName('p');
-        const timeStampId = baliseP[1].innerText;
         const objectID = allTasks.filter(item => item.id === JSON.parse(timeStampId) );
-        console.log("objecttid",objectID)
 
-        Task.showHtml()
-        console.log(timeStampId)
-    }
+        console.log("btnPending ",btnId )
 
-    static btnPending(taskDiv){
-        const newTask = new Task()
-        const btn = document.createElement("BUTTON");
-        btn.onclick =  function () {
-            /*const  allTasks = JSON.parse(localStorage.getItem("task"));
-            console.log("azaz",allTasks)
-            const baliseP = taskDiv.getElementsByTagName('p');
-            const timeStampId = baliseP[1].innerText;
-            const objectID = allTasks.filter(item => item.id === JSON.parse(timeStampId) );
-            console.log(objectID)
 
-            console.log(timeStampId)*/
-            newTask.step(taskDiv);
-            console.log("taatatatat", taskDiv)
-            ParentContainerInProgress.appendChild(taskDiv);
+        switch (btnId) {
+            case 'pending':
+                if (objectID) {
+                    const  encours = JSON.parse(localStorage.getItem("encours")) ?? [];
+                    encours.push(objectID);
+                    localStorage.setItem("encours", JSON.stringify(encours));
+                    console.log("nnnnnnpusuhn", encours)
+
+                    objectID.forEach((item)=>{
+                        Task.showHtml(item.title, item.description, item.id, true);
+                        console.log("teststtststtsb", btnId, item.id);
+                        document.getElementById(`btnpending_${item.id}`).disabled = true; 
+                        
+                
+                    }) 
+                    
+                   
+            
+                   
+                    
+                
+                }           
+            break;
+            case 'inProgress':
+            console.log('code ');   
+              //expected output: "Mangoes and papayas are $2.79 a pound."
+            break;
+            default:
+            console.log(`Sorry, we are out of ${btnId}.`);
         }
-        btn.innerHTML = "CLICK ME";
-        ParentContainer.appendChild(btn);
+            
     }
 
     
-    static showHtml(title, description, id) {
-        //const newTask = new Task()
+    static showHtml(title, description, id, isButton) {
         const taskDiv = document.createElement("div");
-        /*const btn = document.createElement("BUTTON");
-        
-        btn.onclick =  function () {
-            /*const  allTasks = JSON.parse(localStorage.getItem("task"));
-            console.log("azaz",allTasks)
-            const baliseP = taskDiv.getElementsByTagName('p');
-            const timeStampId = baliseP[1].innerText;
-            const objectID = allTasks.filter(item => item.id === JSON.parse(timeStampId) );
-            console.log(objectID)
+        const pendingValue = ParentContainer.attributes[1].nodeValue;
+        const inProgressValue = ParentContainerInProgress.attributes[1].nodeValue;
+        console.log("taskDiv", taskDiv)
+        const btnId = isButton === true ? inProgressValue : pendingValue
+        const btnValue = isButton === true ? 'Fini' : 'En cours'
 
-            console.log(timeStampId)
-            newTask.step(taskDiv)
-        }*/
         taskDiv.innerHTML = `
                     <h5>
                         ${title === undefined? '' : title}
@@ -113,18 +102,19 @@ class Task {
                         ${description === undefined ? '' : description }
                     </p>
                     <p id="timestamp">
-                        ${id === undefined ? '' : id}
+                        ${id === undefined ? '' : new Date(id).toString()}
                     </p>
+                    <input type="button" onClick="Task.step('${id}','${btnId}')" class="btn btn-primary" value="${btnValue}" id="btn${btnId}_${id}" />
                     
         `;
-        //btn.innerHTML = "CLICK ME"; 
-        ParentContainer.appendChild(taskDiv);
-        //ParentContainerInProgress.appendChild(taskDiv);
-        //Task.testb(taskDiv);
-        Task.btnPending(taskDiv)
-        //ParentContainer.appendChild(btn);
+
+        console.log(isButton)
+        ParentContainer.appendChild(taskDiv)
+        isButton === true ? ParentContainerInProgress.appendChild(taskDiv):null
+
         return this;
     }
+
    
 }
 
@@ -133,10 +123,11 @@ Task.showAllTask();
 addTaskBtn.addEventListener("click", (ev) => {
     ev.preventDefault();
     const id = Date.now();
-    let newTask = new Task(titleTask.value, descriptionTask.value, dateTask.value, id);
-    //localStorage.setItem("task", JSON.stringify(newTask));
-     
+    console.log(new Date(id).toString())
+   
+    let newTask = new Task(titleTask.value, descriptionTask.value, dateTask.value, id, "disabled");
     newTask.showTask().storeTask();
+
     titleTask.value = '';
     descriptionTask.value = '';
     dateTask.value = '';
